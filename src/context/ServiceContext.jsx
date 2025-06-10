@@ -11,7 +11,6 @@ export default function ServiceProvider({ children }) {
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
-      console.log(currentUser);
       if (currentUser) {
         const { displayName: name, email, photoURL: image, uid } = currentUser;
         setUser({ name, email, image, uid });
@@ -22,6 +21,7 @@ export default function ServiceProvider({ children }) {
     });
     return () => unsubscribe();
   }, []);
+  console.log(user)
 
   const value = { user, isOpen, setIsOpen, isUserLoggedIn };
 

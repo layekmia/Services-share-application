@@ -1,4 +1,3 @@
-import { useEffect, useRef, useState } from "react";
 import { IoIosArrowDown } from "react-icons/io";
 import { Link, NavLink } from "react-router-dom";
 import { useService } from "../context/ServiceContext";

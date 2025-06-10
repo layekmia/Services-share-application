@@ -1,35 +1,41 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
+import { MdLocationOn } from "react-icons/md";
 import { Link } from "react-router-dom";
+import BASE_URL from "../utils/helper";
 
-const BASE_URL = "http://localhost:3000/api/services"
-
-export default function Services() {
+export default function Services({ search }) {
   const [services, setServices] = useState([]);
+  const [filteredServices, setFilteredServices] = useState([]);
 
   useEffect(() => {
-    async function getServices(){
-        try {
-            const result = await axios.get(BASE_URL);
-            setServices(result.data);
-        } catch (error) {
-            console.log(error.message)
-        }
+    async function getServices() {
+      try {
+        const result = await axios.get(BASE_URL);
+        setServices(result.data);
+      } catch (error) {
+        console.log(error.message);
+      }
     }
 
     getServices();
-  } , [])
+  }, []);
 
-  const popular = services?.slice(0, 6);
+  useEffect(() => {
+    if (!search) {
+      setFilteredServices(services);
+    } else {
+      const filtered = services.filter((service) =>
+        service.title.toLowerCase().includes(search.toLowerCase())
+      );
+      setFilteredServices(filtered);
+    }
+  }, [search, services]);
 
   return (
     <section className="max-w-6xl mx-auto px-4 py-14">
-      <div className="flex justify-between items-center mb-6">
-        <h2 className="text-2xl font-bold text-gray-800">Popular Services</h2>
-      </div>
-
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-        {popular?.map((service) => (
+      <div className="grid grid-cols-1 gap-6">
+        {filteredServices?.map((service) => (
           <div
             key={service._id}
             className="border rounded-lg shadow-sm p-4 flex flex-col sm:flex-row gap-4 bg-white"
@@ -42,9 +48,15 @@ export default function Services() {
 
             <div className="flex flex-col justify-between flex-1">
               <div>
-                <h3 className="text-lg font-semibold text-gray-800">{service.title}</h3>
+                <h3 className="text-lg font-semibold text-gray-800">
+                  {service.title}
+                </h3>
                 <p className="text-sm text-gray-600 mt-1">
                   {service.description.slice(0, 100)}...
+                </p>
+                <p className="text-sm text-stone-700 font-medium flex items-center gap-1 mt-2">
+                  <MdLocationOn className="text-xl text-gray-500" />{" "}
+                  <span>{service.area}</span>
                 </p>
               </div>
 
@@ -59,7 +71,9 @@ export default function Services() {
                     {service.providerName}
                   </span>
                 </div>
-                <span className="text-blue-600 font-semibold">${service.price}</span>
+                <span className="text-blue-600 font-semibold">
+                  ${service.price}
+                </span>
               </div>
 
               <div className="mt-3">
@@ -76,5 +90,4 @@ export default function Services() {
       </div>
     </section>
   );
-};
-
+}

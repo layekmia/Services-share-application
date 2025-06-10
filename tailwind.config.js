@@ -11,7 +11,8 @@ export default {
   theme: {
     extend: {
       fontFamily: {
-        'poppins': ['Poppins', 'serif']
+        'poppins': ['Poppins', 'serif'],
+        'ReemKufi': ['Reem Kufi', 'sans-serif']
       },
       colors: {
         dark:{

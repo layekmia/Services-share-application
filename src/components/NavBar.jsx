@@ -12,23 +12,23 @@ import { toast } from "react-toastify";
 
 export default function NavBar() {
   const { darkMode, setDarkMode } = useTheme();
-  const {signout} = useAuth();
+  const { signout } = useAuth();
 
   const { user } = useService();
 
   const navigate = useNavigate();
   const { setIsOpen } = useService();
 
-  async function handleLogout(){
-    try{
+  async function handleLogout() {
+    try {
       await signout();
-    }catch(err){
-      toast.error(err.message)
+    } catch (err) {
+      toast.error(err.message);
     }
   }
 
   return (
-    <header className="shadow-md  w-full  dark:bg-gray-900">
+    <header className="shadow-md  w-full  dark:bg-gray-800">
       <nav className="container mx-auto flex items-center justify-between py-2 px-5">
         <div
           className="flex items-center gap-2 cursor-pointer"
@@ -43,33 +43,31 @@ export default function NavBar() {
           </h1>
         </div>
         <div className="flex gap-2 items-center">
-        <NavMenu />
-          
+          <NavMenu />
+
           {user ? (
             <>
-              
-            <Dropdown
-              label=""
-              dismissOnClick={false}
-              renderTrigger={() => (
-                <img
-                  src={user.image}
-                  alt="User profile"
-                  className="w-10 h-10 rounded-full object-cover border-2 border-stone-300 cursor-pointer"
-                />
-              )}
-            >
-              <div>
-                <DropdownHeader>
-                  <span className="block text-sm">{user.name}</span>
-                  <span className="block truncate text-sm font-medium">
-                    {user.email}
-                  </span>
-                </DropdownHeader>
-                <DropdownItem onClick={handleLogout}>Sign out</DropdownItem>
-              </div>
-            </Dropdown>
-          
+              <Dropdown
+                label=""
+                dismissOnClick={false}
+                renderTrigger={() => (
+                  <img
+                    src={user.image}
+                    alt="User profile"
+                    className="w-10 h-10 rounded-full object-cover border-2 border-stone-300 cursor-pointer"
+                  />
+                )}
+              >
+                <div>
+                  <DropdownHeader>
+                    <span className="block text-sm">{user.name}</span>
+                    <span className="block truncate text-sm font-medium">
+                      {user.email}
+                    </span>
+                  </DropdownHeader>
+                  <DropdownItem onClick={handleLogout}>Sign out</DropdownItem>
+                </div>
+              </Dropdown>
             </>
           ) : (
             <div>
@@ -79,20 +77,21 @@ export default function NavBar() {
               >
                 Login
               </button>
-              <button
-                className="text-gray-700 dark:text-white text-2xl md:hidden"
-                onClick={() => setIsOpen(true)}
-              >
-                <HiBars3BottomRight />
-              </button>
             </div>
           )}
-          <button
+           <button
             onClick={() => setDarkMode((mode) => !mode)}
             className="text-xl text-gray-500 dark:text-gray-400"
           >
             {darkMode ? <MdSunny /> : <IoIosMoon />}
           </button>
+          <button
+            className="text-gray-700 dark:text-white text-2xl md:hidden"
+            onClick={() => setIsOpen(true)}
+          >
+            <HiBars3BottomRight />
+          </button>
+         
         </div>
       </nav>
     </header>

@@ -121,6 +121,7 @@ export default function MobileNabMenu() {
                       <Link
                         to={item.path}
                         className="text-base py-2 block text-gray-700 pl-12 dark:text-gray-300"
+                        onClick={handleLinkClick}
                       >
                         {item.label}
                       </Link>

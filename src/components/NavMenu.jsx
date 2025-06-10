@@ -46,7 +46,7 @@ export default function NavMenu() {
         >
           Dashboard <IoIosArrowDown className="text-gray-500 dark:text-white text-base" />
           <div
-            className={`absolute top-10 hidden  group-hover:block`}
+            className={`absolute top-10 hidden  group-hover:block z-20`}
           >
             <ul
               className={`bg-white shadow-md z-10 pt-2  w-[180px] text-sm font-medium dark:bg-gray-700  left-0 top-10`}

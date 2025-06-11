@@ -12,7 +12,6 @@ export default function ServiceDetails() {
   const { user } = useService();
   const [service, setService] = useState(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [bookings, setBookings] = useState();
 
   useEffect(() => {
     async function fetchService() {
@@ -27,24 +26,8 @@ export default function ServiceDetails() {
     fetchService();
   }, [id]);
 
-  useEffect(() => {
-    const getBookedService = async () => {
-      try {
-        const res = await axios.get(
-          `http://localhost:3000/api/booking/services?email=${user?.email}`
-        );
-        setBookings(res.data);
-      } catch (error) {
-        console.error("Error fetching booked services:", error.message);
-      }
-    };
 
-    getBookedService();
-  }, [user?.email, id]);
 
-  const isAlreadyBooked = bookings?.some((booking) => booking.serviceId === id);
-
-  console.log(isAlreadyBooked)
 
   function onClose() {
     setIsModalOpen(false);

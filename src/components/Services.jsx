@@ -3,19 +3,24 @@ import { useEffect, useState } from "react";
 import { MdLocationOn } from "react-icons/md";
 import { Link } from "react-router-dom";
 import BASE_URL from "../utils/helper";
+import LoadSpinner from "./Spinner";
 
 export default function Services({ search }) {
   const [services, setServices] = useState([]);
   const [filteredServices, setFilteredServices] = useState([]);
+  const [isLoading, setIsLoading] = useState(false)
 
   useEffect(() => {
     async function getServices() {
       try {
+        setIsLoading(true)
         const result = await axios.get(BASE_URL);
         setServices(result.data);
       } catch (error) {
         console.log(error.message);
-      }
+      }finally{
+      setIsLoading(false)
+    }
     }
 
     getServices();
@@ -31,6 +36,8 @@ export default function Services({ search }) {
       setFilteredServices(filtered);
     }
   }, [search, services]);
+
+  if(isLoading) return <LoadSpinner/>
 
   return (
     <section className="max-w-6xl mx-auto px-4 py-14">
@@ -55,7 +62,7 @@ export default function Services({ search }) {
                   {service.description.slice(0, 100)}...
                 </p>
                 <p className="text-sm text-stone-700 font-medium flex items-center gap-1 mt-2">
-                  <MdLocationOn className="text-xl text-gray-500" />{" "}
+                  <MdLocationOn className="text-xl text-gray-500" />
                   <span>{service.area}</span>
                 </p>
               </div>

@@ -3,10 +3,16 @@ import { useParams } from "react-router-dom";
 import axios from "axios";
 import BASE_URL from "../utils/helper";
 import LoadSpinner from "../components/Spinner";
+import { MdLocationOn } from "react-icons/md";
+import BookNowModal from "../components/BookModal";
+import { useService } from "../context/ServiceContext";
+import BookingModal from "../components/BookModal";
 
 export default function ServiceDetails() {
   const { id } = useParams();
+  const {user} = useService();
   const [service, setService] = useState(null);
+  const [isModalOpen, setIsModalOpen] = useState(false)
 
   useEffect(() => {
     async function fetchService() {
@@ -22,6 +28,10 @@ export default function ServiceDetails() {
     fetchService();
   }, [id]);
 
+  function onClose(){
+    setIsModalOpen(false);
+  }
+
   if (!service) {
     return <LoadSpinner/>;
   }
@@ -31,7 +41,7 @@ export default function ServiceDetails() {
       <div className="mb-8">
         <h1 className="text-3xl font-bold text-gray-800 mb-2">{service.title}</h1>
         <div className="flex items-center gap-3 text-sm text-gray-500">
-          <span>{service.area}</span>
+          <span className="flex gap-1"> <MdLocationOn className="text-xl text-gray-500" /> {service.area}</span>
           <span>|</span>
           <span>Provided by {service.providerName}</span>
         </div>
@@ -65,9 +75,12 @@ export default function ServiceDetails() {
             <h3 className="text-2xl font-bold text-green-600">${service.price}</h3>
           </div>
 
-          <button className="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded-md transition duration-300">
+          <button onClick={() => setIsModalOpen(true)} className="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded-md transition duration-300">
             Book Now
           </button>
+          {
+            isModalOpen && <BookNowModal service={service} user={user} onClose={onClose}/>
+          }
         </div>
       </div>
     </div>

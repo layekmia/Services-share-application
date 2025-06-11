@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { CiLock } from "react-icons/ci";
 import { Spinner } from "flowbite-react";
@@ -23,6 +23,10 @@ export default function Login() {
 
   const { userLogin } = useAuth();
   const provider = new GoogleAuthProvider();
+
+    useEffect(() => {
+      document.title = "ServiceSphere | Login";
+    }, []);
 
   async function handleLogin(e) {
     e.preventDefault();

@@ -1,9 +1,13 @@
 import { HiMagnifyingGlass } from "react-icons/hi2";
 import Services from "../components/Services";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 export default function AllServices() {
   const [query, setQuery] = useState('');
+
+    useEffect(() => {
+      document.title = "All Services | ServiceSphere";
+    }, []);
 
   return (
     <div className="container mx-auto px-5">

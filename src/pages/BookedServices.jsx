@@ -8,6 +8,10 @@ export default function BookedServices() {
   const [bookedServices, setBookedServices] = useState([]);
   const [loading, setLoading] = useState(true);
 
+    useEffect(() => {
+      document.title = "Booked services | ServiceSphere";
+    }, []);
+
   useEffect(() => {
     async function fetchBookedServices() {
       try {

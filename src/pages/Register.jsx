@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import SignUpAnimation from "../components/animation/SignUpAnimation";
 import { IoLink } from "react-icons/io5";
 import { useNavigate } from "react-router-dom";
@@ -9,7 +9,11 @@ import { toast } from "react-toastify";
 import { useAuth } from "../context/AuthProvider";
 import auth from "../firebase/firebase";
 import { Spinner } from "flowbite-react";
-import { GoogleAuthProvider, signInWithPopup, updateProfile } from "firebase/auth";
+import {
+  GoogleAuthProvider,
+  signInWithPopup,
+  updateProfile,
+} from "firebase/auth";
 
 const isValidPassword = /^(?=.*[a-z])(?=.*[A-Z]).{6,}$/;
 
@@ -72,10 +76,10 @@ export default function Register() {
   }
 
   async function handleGoogleRegister() {
-    try{
+    try {
       await signInWithPopup(auth, provider);
-    }catch(error){
-      toast.error(`Something went wrong ${error.message}`)
+    } catch (error) {
+      toast.error(`Something went wrong ${error.message}`);
     }
   }
 
@@ -83,6 +87,9 @@ export default function Register() {
     const { name, value } = e.target;
     setFormData((prev) => ({ ...prev, [name]: value }));
   }
+  useEffect(() => {
+    document.title = "ServiceSphere | Register";
+  }, []);
 
   return (
     <div className=" py-5 dark:bg-gray-800">

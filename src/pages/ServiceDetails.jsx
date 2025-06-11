@@ -44,10 +44,13 @@ export default function ServiceDetails() {
 
   const isAlreadyBooked = bookings?.some((booking) => booking.serviceId === id);
 
-
   function onClose() {
     setIsModalOpen(false);
   }
+
+  useEffect(() => {
+    document.title = "Service Details | ServiceSphere";
+  }, []);
 
   if (!service) {
     return <LoadSpinner />;
@@ -102,12 +105,13 @@ export default function ServiceDetails() {
           </div>
 
           <button
-          disabled={isAlreadyBooked}
-          
+            disabled={isAlreadyBooked}
             onClick={() => setIsModalOpen(true)}
-            className={`w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded-md transition duration-300 ${isAlreadyBooked ? 'opacity-40 cursor-not-allowed': ''}`}
+            className={`w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded-md transition duration-300 ${
+              isAlreadyBooked ? "opacity-40 cursor-not-allowed" : ""
+            }`}
           >
-            {isAlreadyBooked ? 'Already booked': 'Book Now'}
+            {isAlreadyBooked ? "Already booked" : "Book Now"}
           </button>
           {isModalOpen && (
             <BookNowModal service={service} user={user} onClose={onClose} />

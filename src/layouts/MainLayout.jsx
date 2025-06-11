@@ -8,10 +8,9 @@ import LoadSpinner from '../components/Spinner'
 
 export default function MainLayout() {
   const navigation = useNavigation();
-  const {isUserLoggedIn} = useService();
+  const { authLoading } = useService();
 
-  if(isUserLoggedIn || navigation.state === 'loading') return <LoadSpinner/>
-
+  if (authLoading || navigation.state === "loading") return <LoadSpinner />;
 
   return (
     <div className="dark:bg-gray-900">
@@ -21,7 +20,7 @@ export default function MainLayout() {
       </main>
       <Footer />
       <MobileNabMenu />
-      <ToastContainer autoClose={1000}/>
+      <ToastContainer autoClose={1000} />
     </div>
   );
 }

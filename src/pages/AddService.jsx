@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useService } from "../context/ServiceContext";
 import axiosInstance from "../utils/axiosInstance";
 import { toast } from "react-toastify";
@@ -44,6 +44,10 @@ export default function AddService() {
       toast.error(error.message);
     }
   };
+
+  useEffect(() => {
+    document.title = "Add Service | ServiceSphere";
+  }, []);
 
   return (
     <div className="w-full h-full  mt-1">

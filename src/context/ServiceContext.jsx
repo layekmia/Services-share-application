@@ -7,7 +7,7 @@ const ServiceContext = createContext();
 export default function ServiceProvider({ children }) {
   const [user, setUser] = useState(null);
   const [isOpen, setIsOpen] = useState(false);
-  const [isUserLoggedIn, setIsUserLoggedIn] = useState(true);
+  const [authLoading, setAuthLoading] = useState(true);
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
@@ -17,20 +17,17 @@ export default function ServiceProvider({ children }) {
       } else {
         setUser(null);
       }
-      setIsUserLoggedIn(false);
+      setAuthLoading(false);
     });
     return () => unsubscribe();
   }, []);
 
-  const value = { user, isOpen, setIsOpen, isUserLoggedIn };
-
+  const value = { user, authLoading, isOpen, setIsOpen };
   return (
     <ServiceContext.Provider value={value}>{children}</ServiceContext.Provider>
   );
 }
 
-function useService() {
+export function useService() {
   return useContext(ServiceContext);
 }
-
-export { useService };

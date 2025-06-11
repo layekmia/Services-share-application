@@ -25,7 +25,7 @@ export default function BookNowModal({ service, user, onClose }) {
 
     
     try {
-      await axios.post("http://localhost:3000/api/services/booking", bookingData);
+      await axios.post("http://localhost:3000/api/booking/services", bookingData);
       toast.success("Booking submitted!");
       onClose();
     } catch (err) {

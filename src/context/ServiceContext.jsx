@@ -21,7 +21,6 @@ export default function ServiceProvider({ children }) {
     });
     return () => unsubscribe();
   }, []);
-  console.log(user)
 
   const value = { user, isOpen, setIsOpen, isUserLoggedIn };
 

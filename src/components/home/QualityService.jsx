@@ -5,8 +5,6 @@ export default function Quality() {
   return (
 <section className="bg-white dark:bg-gray-900 py-16 mb-32 container mx-auto">
   <div className="max-w-7xl mx-auto px-4 grid md:grid-cols-2 items-center gap-12">
-    
-    {/* Text Section with Animation */}
     <motion.div
       initial={{ opacity: 0, x: -50 }}
       whileInView={{ opacity: 1, x: 0 }}
@@ -26,8 +24,6 @@ export default function Quality() {
         Book now
       </button>
     </motion.div>
-
-    {/* Image Section with Animation */}
     <motion.div
       className="relative w-full h-full flex justify-center"
       initial={{ opacity: 0, x: 50 }}

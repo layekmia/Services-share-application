@@ -28,12 +28,12 @@ export default function NavBar() {
   }
 
   return (
-    <header className="shadow-md  w-full  dark:bg-gray-800 sticky top-0 z-50 bg-white">
-      <nav className="container mx-auto flex items-center justify-between py-2 px-5  lg:h-[70px] ">
+    <header className="shadow-md  w-full  dark:bg-gray-800 sticky top-0 z-50 right-0 bg-white">
+      <nav className=" flex items-center justify-between py-2 px-4 lg:px-14  lg:h-[70px]">
         <Logo />
         <NavMenu />
 
-        <div className="flex items-center gap-4">
+        <div className="flex items-center gap-2 lg:gap-4">
           {user ? (
             <>
               <Dropdown

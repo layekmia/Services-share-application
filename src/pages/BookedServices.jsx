@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-import { FaSpinner } from "react-icons/fa";
 import { useService } from "../context/ServiceContext";
 import axiosInstance from "../utils/axiosInstance";
 import { Table, TableBody, TableCell, TableHead, TableHeadCell, TableRow } from "flowbite-react";
@@ -35,7 +34,7 @@ export default function BookedServices() {
     }
   }, [user?.email]);
 
-  if (loading) <LoadSpinner/>
+  if (loading) return <LoadSpinner/>
 
   if(bookedServices.length === 0) return <EmptyPage title='No Services Booked yet' description="You haven't booked any service. Click the button below to booked your first service" icon={<BookCheck size={40} />} btnText='book service' path='/services'/>
 
@@ -44,9 +43,8 @@ export default function BookedServices() {
       <h2 className="text-3xl font-semibold mb-6 text-center text-gray-800 dark:text-white">
         My Booked Services
       </h2>
-
       <div className="overflow-x-auto mx-auto my-20 ">
-        <Table className="min-w-[620px]">
+        <Table className="">
           <TableHead>
             <TableRow>
               <TableHeadCell className="py-2 px-3 lg:py-3 lg:px-5">#No</TableHeadCell>
@@ -73,7 +71,7 @@ export default function BookedServices() {
                 </TableCell>
                 <TableCell className="py-2 px-3 lg:py-3 lg:px-5">
                   <img
-                    className="h-16 w-32 object-cover rounded-md"
+                    className="h-16 w-32 object-cover rounded-sm"
                     src={service.serviceImage}
                     alt="service"
                   />

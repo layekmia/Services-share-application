@@ -8,7 +8,7 @@ import { FaChevronDown } from "react-icons/fa";
 
 const menuItems = [
   { label: "Add Service", path: "/add-service" },
-  { label: "Manage Services", path: "/manage-service" },
+  { label: "Manage Services", path: "/manage-services" },
   { label: "Booked Service", path: "/booked-services" },
   { label: "Service-To-Do", path: "/todo" },
 ];
@@ -17,14 +17,14 @@ export default function MobileNabMenu() {
   const { isOpen, setIsOpen } = useService();
   const { user } = useService();
   const [showDropdown, setShowDropdown] = useState(false);
-  const navigate = useNavigate()
+  const navigate = useNavigate();
   const menuRef = useRef();
 
   useEffect(() => {
     const handleOutsideClick = (e) => {
       if (menuRef.current && !menuRef.current.contains(e.target)) {
         setIsOpen(false);
-        setShowDropdown(false)
+        setShowDropdown(false);
       }
     };
     if (isOpen) {
@@ -131,9 +131,17 @@ export default function MobileNabMenu() {
               </div>
             </div>
           )}
-          <button onClick={() => {navigate('/login'); handleLinkClick()}} className="mt-5 py-[6px] w-fit mx-auto rounded-md px-5 bg-blue-600 text-white dark:text-white dark:bg-gray-900">
-            sign In
-          </button>
+          {!user && (
+            <button
+              onClick={() => {
+                navigate("/login");
+                handleLinkClick();
+              }}
+              className="mt-5 py-[6px] w-fit mx-auto rounded-md px-5 bg-blue-600 text-white dark:text-white dark:bg-gray-900"
+            >
+              sign In
+            </button>
+          )}
         </ul>
       </div>
     </>

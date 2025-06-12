@@ -50,7 +50,7 @@ export default function Services({ search }) {
             <img
               src={service.image}
               alt={service.title}
-              className="w-full sm:w-48 h-32 md:h-full object-cover rounded"
+              className="w-full sm:w-48 h-32 md:h-40 object-cover rounded"
             />
 
             <div className="flex flex-col justify-between flex-1">

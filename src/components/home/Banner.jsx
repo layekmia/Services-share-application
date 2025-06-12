@@ -12,6 +12,7 @@ export default function Banner() {
     <div className="bg-background dark:bg-dark-background">
       <div className=" h-[90vh] md:h-[600px] lg:h-screen ">
         <Swiper
+          allowTouchMove={false}
           autoplay={{ delay: 2000, disableOnInteraction: false }}
           loop={true}
           pagination={true}

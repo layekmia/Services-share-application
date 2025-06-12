@@ -14,7 +14,7 @@ export default function Home() {
     <>
       <Banner />
       <PopularServices />
-      <div className="bg-gray-50 w-full flex justify-center dark:bg-gray-900 dark:border-b-2 dark:border-b-gray-700 text-gray-900 dark:text-white min-h-screen">
+      <div className="bg-gray-50 w-full flex justify-center dark:bg-gray-900 dark:border-b-2 dark:border-b-gray-700 text-gray-900 dark:text-white py-10">
         <StepTimeline />
       </div>
       <Quality/>

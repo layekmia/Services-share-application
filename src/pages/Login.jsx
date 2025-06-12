@@ -7,7 +7,6 @@ import { MdOutlineMailOutline } from "react-icons/md";
 import { toast } from "react-toastify";
 import {
   GoogleAuthProvider,
-  sendPasswordResetEmail,
   signInWithPopup,
 } from "firebase/auth";
 import auth from "../firebase/firebase";
@@ -50,15 +49,6 @@ export default function Login() {
       await signInWithPopup(auth, provider);
     } catch (error) {
       toast.error("something went wrong" + error.message);
-    }
-  }
-  async function handleResetPassword() {
-    if (!email) return toast.error("Enter email first");
-    try {
-      await sendPasswordResetEmail(auth, email);
-      toast.success("successfully send verification link");
-    } catch (error) {
-      toast.error(error.code);
     }
   }
 
@@ -120,12 +110,6 @@ export default function Login() {
                   {isShowPass ? <FaEye /> : <FaEyeSlash />}
                 </span>
               </div>
-              <p
-                onClick={handleResetPassword}
-                className="text-left cursor-pointer font-medium text-primary dark:text-white hover:underline"
-              >
-                Forgot password
-              </p>
               <button
                 disabled={isLoading}
                 className={`py-[6px] bg-primary dark:bg-gray-700 w-full rounded-md mt-5 bg-blue-600 text-white  font-medium text-base ${

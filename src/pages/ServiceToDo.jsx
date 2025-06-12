@@ -1,10 +1,12 @@
 import { useEffect, useState } from "react";
 import { useService } from "../context/ServiceContext";
-import axios from "axios";
 import { Table, TableBody, TableCell, TableHead, TableHeadCell, TableRow } from "flowbite-react";
 import { formatDate } from "../utils/helper";
 import { toast } from "react-toastify";
 import axiosInstance from "../utils/axiosInstance";
+import EmptyPage from "../components/emptyPages/EmptyPage";
+import { Briefcase } from "lucide-react";
+import LoadSpinner from "../components/Spinner";
 
 
 export default function ServiceToDo() {
@@ -31,7 +33,7 @@ export default function ServiceToDo() {
 
   const handleStatusChange = async (id, newStatus) => {
     try {
-      await axios.patch(`http://localhost:3000/api/booking/update-status/${id}`, { status: newStatus });
+      await axiosInstance.patch(`/bookings/update-status/${id}`, { status: newStatus });
       toast.success("status updated successfully");
       setMyBookings((prev) =>
         prev.map((item) =>
@@ -47,14 +49,12 @@ export default function ServiceToDo() {
     document.title = "Service-To-Do | ServiceSphere";
   }, []);
 
-  if (loading) return <p className="text-center mt-10">Loading...</p>;
+  if (loading) return <LoadSpinner/>
 
-  if (myBookings.length === 0) {
-    return <p className="text-center mt-10 text-lg">No services to do yet.</p>;
-  }
+  if (myBookings.length === 0) return <EmptyPage icon={<Briefcase size={40} />} title="There is no service to do yet" description="You have listed your service and then people will book your service. click the button and listed your service" btnText="Add service" path='/add-service'/>
 
   return (
-    <div className="overflow-x-auto container mx-auto mt-20">
+    <div className="overflow-x-auto container mx-auto my-20">
       <Table>
         <TableHead>
           <TableRow>

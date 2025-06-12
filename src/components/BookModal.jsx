@@ -20,15 +20,17 @@ export default function BookNowModal({ service, user, onClose }) {
       date,
       specialInstruction,
       price: service.price,
+      serviceLocation: service.area,
       serviceStatus: "pending",
     };
 
     
     try {
-      await axios.post("http://localhost:3000/api/booking/services", bookingData);
+      await axios.post("http://localhost:3000/api/booking", bookingData);
       toast.success("Booking submitted!");
       onClose();
     } catch (err) {
+      console.log(err)
       toast.error("Booking failed:", err.message);
     }
   };
@@ -69,6 +71,10 @@ export default function BookNowModal({ service, user, onClose }) {
           <div>
             <label>Service Price</label>
             <input type="text" className="input" value={`$${service.price}`} disabled />
+          </div>
+          <div>
+            <label>Service Location</label>
+            <input type="text" className="input" value={`${service.area}`} disabled />
           </div>
           <div>
             <label>Taking Date</label>

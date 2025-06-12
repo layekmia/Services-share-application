@@ -12,6 +12,7 @@ import ManageServices from "../pages/ManageServices";
 import BookedServices from "../pages/BookedServices";
 import ServiceToDo from "../pages/ServiceToDo";
 import ServiceDetails from "../pages/ServiceDetails";
+import AboutUs from "../pages/About";
 
 const router = createBrowserRouter([
   {
@@ -70,8 +71,14 @@ const router = createBrowserRouter([
         ),
       },
       {
-        path: '/services/:id', element: <PrivateRoute><ServiceDetails/></PrivateRoute>
-      }
+        path: "/services/:id",
+        element: (
+          <PrivateRoute>
+            <ServiceDetails />
+          </PrivateRoute>
+        ),
+      },
+      {path:'/about-us', element: <AboutUs/>}
     ],
   },
 ]);

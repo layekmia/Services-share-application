@@ -30,7 +30,7 @@ export default function AddService() {
 
     try {
       const result = await axiosInstance.post("/add", newService);
-      console.log(result);
+      console.log(result)
       toast.success("service added successfully");
       setForm({
         image: "",

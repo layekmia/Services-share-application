@@ -19,7 +19,7 @@ export default function NavMenu() {
         <NavLink
           className={({ isActive }) =>
             `py-2 px-4 rounded ${
-              isActive ? "bg-gray-50  dark:bg-gray-700" : ""
+              isActive ? "bg-gray-100  dark:bg-gray-700" : ""
             }`
           }
           to="/"
@@ -31,7 +31,7 @@ export default function NavMenu() {
         <NavLink
           className={({ isActive }) =>
             `py-2 px-4 rounded ${
-              isActive ? "bg-gray-50  dark:bg-gray-700" : ""
+              isActive ? "bg-gray-100  dark:bg-gray-700" : ""
             }`
           }
           to="/services"

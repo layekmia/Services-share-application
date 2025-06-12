@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-import axios from "axios";
 import { toast } from "react-toastify";
 import { useService } from "../context/ServiceContext";
 import { MdDelete } from "react-icons/md";
@@ -7,6 +6,7 @@ import { FaRegEdit } from "react-icons/fa";
 import BASE_URL, { formatDate } from "../utils/helper";
 import EditModal from "../components/EditModal";
 import DeleteConfirmationModal from "../components/DeleteConfirmation";
+import axiosInstance from "../utils/axiosInstance";
 
 
 export default function ManageServicesPage() {
@@ -19,7 +19,7 @@ export default function ManageServicesPage() {
   useEffect(() => {
     async function fetchServices() {
       try {
-        const res = await axios.get(`http://localhost:3000/api/services/by-email?email=${user.email}`);
+        const res = await axiosInstance.get(`http://localhost:3000/api/services/my-services`);
         setServices(res.data);
       } catch (err) {
         console.error(err);
@@ -30,7 +30,7 @@ export default function ManageServicesPage() {
 
   const handleDelete = async () => {
     try {
-      await axios.delete(`${BASE_URL}/${deleteId}`);
+      await axiosInstance.delete(`${BASE_URL}/${deleteId}`);
       setServices(prev => prev.filter(service => service._id !== deleteId));
       toast.success("Service deleted successfully");
       setDeleteId(null);

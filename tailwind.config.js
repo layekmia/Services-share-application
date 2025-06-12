@@ -17,7 +17,9 @@ export default {
       colors: {
         dark:{
           background: "#111827",
+          accent: '9ca3af'
         }
+
       }
     },
   },

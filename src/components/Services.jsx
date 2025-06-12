@@ -14,7 +14,7 @@ export default function Services({ search }) {
     async function getServices() {
       try {
         setIsLoading(true)
-        const result = await axios.get(BASE_URL);
+        const result = await axios.get(`${BASE_URL}/services`);
         setServices(result.data);
       } catch (error) {
         console.log(error.message);

@@ -1,9 +1,8 @@
-import { Helmet } from "react-helmet-async";
 import Banner from "../components/home/Banner";
 import PopularServices from "../components/home/PopulerServices";
-import HowItWorks from "../components/home/WhyChoseus";
-import WhyChooseUs from "../components/home/WhyChoseus";
 import { useEffect } from "react";
+import StepTimeline from "../components/home/HowItWork";
+import TopServiceProviders from "../components/home/TopServiceProvder";
 
 export default function Home() {
   useEffect(() => {
@@ -14,7 +13,10 @@ export default function Home() {
     <>
       <Banner />
       <PopularServices />
-      <HowItWorks />
+      <div className="bg-gray-50 w-full flex justify-center dark:bg-gray-800 text-gray-900 dark:text-white min-h-screen">
+        <StepTimeline />
+      </div>
+      <TopServiceProviders/>
     </>
   );
 }

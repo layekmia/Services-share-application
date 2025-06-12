@@ -31,7 +31,7 @@ export default function ServiceDetails() {
     const getBookedService = async () => {
       try {
         const res = await axios.get(
-          `http://localhost:3000/api/booking/services?email=${user?.email}`
+          `http://localhost:3000/api/booking/user?email=${user?.email}`
         );
         setBookings(res.data);
       } catch (error) {

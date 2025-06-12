@@ -1,38 +1,38 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
-
-const BASE_URL = "http://localhost:3000/api/services"
+import { Link, useNavigate } from "react-router-dom";
+import BASE_URL from "../../utils/helper";
 
 export default function PopularServices() {
   const [services, setServices] = useState([]);
+  const navigate = useNavigate();
 
   useEffect(() => {
-    async function getServices(){
-        try {
-            const result = await axios.get(BASE_URL);
-            setServices(result.data);
-        } catch (error) {
-            console.log(error.message)
-        }
+    async function getServices() {
+      try {
+        const result = await axios.get(`${BASE_URL}/services`);
+        setServices(result.data);
+      } catch (error) {
+        console.log(error.message);
+      }
     }
 
     getServices();
-  } , [])
-
-  const popular = services?.slice(0, 6);
+  }, []);
 
   return (
-    <section className="max-w-6xl mx-auto px-4 py-14">
+    <section className="max-w-6xl mx-auto px-5 lg:px-0 py-14">
       <div className="flex justify-between items-center mb-6">
-        <h2 className="text-2xl font-bold text-gray-800">Popular Services</h2>
+        <h2 className="text-2xl font-bold text-gray-800 dark:text-gray-300">
+          Popular Services
+        </h2>
       </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-        {popular?.map((service) => (
+        {services.slice(0,6)?.map((service) => (
           <div
             key={service._id}
-            className="border rounded-lg shadow-sm p-4 flex flex-col sm:flex-row gap-4 bg-white"
+            className="border rounded-lg shadow-sm p-4 flex flex-col sm:flex-row gap-4 bg-white dark:bg-gray-800 dark:border-gray-700"
           >
             <img
               src={service.image}
@@ -42,8 +42,10 @@ export default function PopularServices() {
 
             <div className="flex flex-col justify-between flex-1">
               <div>
-                <h3 className="text-lg font-semibold text-gray-800">{service.title}</h3>
-                <p className="text-sm text-gray-600 mt-1">
+                <h3 className="text-lg font-semibold text-gray-800 dark:text-gray-300">
+                  {service.title}
+                </h3>
+                <p className="text-sm text-gray-600 mt-1 dark:text-gray-400">
                   {service.description.slice(0, 100)}...
                 </p>
               </div>
@@ -55,17 +57,19 @@ export default function PopularServices() {
                     alt="provider"
                     className="w-8 h-8 rounded-full object-cover"
                   />
-                  <span className="text-sm text-gray-700 font-medium">
+                  <span className="text-sm text-gray-700 font-medium dark:text-gray-300">
                     {service.providerName}
                   </span>
                 </div>
-                <span className="text-blue-600 font-semibold">${service.price}</span>
+                <span className="text-blue-600 font-semibold dark:text-gray-100">
+                  ${service.price}
+                </span>
               </div>
 
               <div className="mt-3">
                 <Link
                   to={`/services/${service._id}`}
-                  className="text-white bg-blue-500 hover:bg-blue-600 px-3 py-1 rounded text-sm"
+                  className="text-white dark:text-gray-300 bg-blue-500 hover:bg-blue-600 dark:bg-gray-700 dark:hover:bg-gray-600 px-3 py-[6px] rounded text-sm "
                 >
                   View Detail
                 </Link>
@@ -74,7 +78,9 @@ export default function PopularServices() {
           </div>
         ))}
       </div>
+       {services.length && <div className="w-full flex items-center justify-center mt-8">
+         <button onClick={() => navigate('/services')} className="py-2 px-5 bg-blue-600 text-white rounded dark:bg-gray-700">View More</button>
+       </div>}
     </section>
   );
-};
-
+}

@@ -1,4 +1,3 @@
-import { FaUser } from "react-icons/fa";
 import NavMenu from "./NavMenu";
 import { IoIosMoon } from "react-icons/io";
 import { useTheme } from "../context/ThemeContext";
@@ -9,6 +8,7 @@ import { useService } from "../context/ServiceContext";
 import { Dropdown, DropdownHeader, DropdownItem } from "flowbite-react";
 import { useAuth } from "../context/AuthProvider";
 import { toast } from "react-toastify";
+import Logo from "./Logo";
 
 export default function NavBar() {
   const { darkMode, setDarkMode } = useTheme();
@@ -28,23 +28,12 @@ export default function NavBar() {
   }
 
   return (
-    <header className="shadow-md  w-full  dark:bg-gray-800">
-      <nav className="container mx-auto flex items-center justify-between py-2 px-5">
-        <div
-          className="flex items-center gap-2 cursor-pointer"
-          onClick={() => navigate("/")}
-        >
-          <div className="w-10 h-10 rounded-full bg-gradient-to-r from-blue-500 to-purple-600 flex items-center justify-center text-white font-bold text-xl">
-            S
-          </div>
-          <h1 className="text-2xl font-semibold text-gray-800 dark:text-white">
-            Servi
-            <span className="text-blue-600 dark:text-blue-400">Sphere</span>
-          </h1>
-        </div>
-        <div className="flex gap-2 items-center">
-          <NavMenu />
+    <header className="shadow-md  w-full  dark:bg-gray-800 sticky top-0 z-50 bg-white">
+      <nav className="container mx-auto flex items-center justify-between py-2 px-5  lg:h-[70px] ">
+        <Logo />
+        <NavMenu />
 
+        <div className="flex items-center gap-4">
           {user ? (
             <>
               <Dropdown
@@ -79,7 +68,7 @@ export default function NavBar() {
               </button>
             </div>
           )}
-           <button
+          <button
             onClick={() => setDarkMode((mode) => !mode)}
             className="text-xl text-gray-500 dark:text-gray-400"
           >
@@ -91,7 +80,6 @@ export default function NavBar() {
           >
             <HiBars3BottomRight />
           </button>
-         
         </div>
       </nav>
     </header>

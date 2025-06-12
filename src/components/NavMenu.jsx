@@ -41,7 +41,7 @@ export default function NavMenu() {
       </li>
       {user && (
         <div
-          className="relative flex items-center gap-1 cursor-pointer group py-2 px-1"
+          className="relative flex items-center gap-1 cursor-pointer group py-2 px-1 ml-1"
         >
           Dashboard <IoIosArrowDown className="text-gray-500 dark:text-white text-base" />
           <div

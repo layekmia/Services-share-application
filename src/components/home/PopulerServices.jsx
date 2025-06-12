@@ -2,6 +2,7 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import BASE_URL from "../../utils/helper";
+import LoadSpinner from "../Spinner";
 
 export default function PopularServices() {
   const [services, setServices] = useState([]);
@@ -20,8 +21,10 @@ export default function PopularServices() {
     getServices();
   }, []);
 
+  if(!services.length) return <LoadSpinner/>
+
   return (
-    <section className="max-w-6xl mx-auto px-5 lg:px-0 py-14">
+    <section className="container  mx-auto px-5 lg:px-0 py-14">
       <div className="flex justify-between items-center mb-6">
         <h2 className="text-2xl font-bold text-gray-800 dark:text-gray-300">
           Popular Services
@@ -29,7 +32,7 @@ export default function PopularServices() {
       </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-        {services.slice(0,6)?.map((service) => (
+        {services.slice(0, 6)?.map((service) => (
           <div
             key={service._id}
             className="border rounded-lg shadow-sm p-4 flex flex-col sm:flex-row gap-4 bg-white dark:bg-gray-800 dark:border-gray-700"
@@ -78,9 +81,16 @@ export default function PopularServices() {
           </div>
         ))}
       </div>
-       {services.length && <div className="w-full flex items-center justify-center mt-8">
-         <button onClick={() => navigate('/services')} className="py-2 px-5 bg-blue-600 text-white rounded dark:bg-gray-700">View More</button>
-       </div>}
+      {services.length && (
+        <div className="w-full flex items-center justify-center mt-8">
+          <button
+            onClick={() => navigate("/services")}
+            className="py-2 px-5 bg-blue-600 text-white rounded dark:bg-gray-700"
+          >
+            View More
+          </button>
+        </div>
+      )}
     </section>
   );
 }

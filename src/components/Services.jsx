@@ -45,7 +45,7 @@ export default function Services({ search }) {
         {filteredServices?.map((service) => (
           <div
             key={service._id}
-            className="border rounded-lg shadow-sm p-4 flex flex-col sm:flex-row gap-4 bg-white"
+            className="border rounded-lg shadow-sm p-4 flex flex-col sm:flex-row gap-4 bg-white dark:bg-gray-800 dark:border-gray-600"
           >
             <img
               src={service.image}
@@ -55,14 +55,14 @@ export default function Services({ search }) {
 
             <div className="flex flex-col justify-between flex-1">
               <div>
-                <h3 className="text-lg font-semibold text-gray-800">
+                <h3 className="text-lg font-semibold text-gray-800 dark:text-white">
                   {service.title}
                 </h3>
-                <p className="text-sm text-gray-600 mt-1">
+                <p className="text-sm text-gray-600 mt-1 dark:text-gray-300">
                   {service.description.slice(0, 100)}...
                 </p>
-                <p className="text-sm text-stone-700 font-medium flex items-center gap-1 mt-2">
-                  <MdLocationOn className="text-xl text-gray-500" />
+                <p className="text-sm text-stone-700 font-medium flex items-center gap-1 mt-2 dark:text-gray-400">
+                  <MdLocationOn className="text-xl text-gray-500 dark:text-gray-300" />
                   <span>{service.area}</span>
                 </p>
               </div>
@@ -74,11 +74,11 @@ export default function Services({ search }) {
                     alt="provider"
                     className="w-8 h-8 rounded-full object-cover"
                   />
-                  <span className="text-sm text-gray-700 font-medium">
+                  <span className="text-sm text-gray-700 font-medium dark:text-gray-300">
                     {service.providerName}
                   </span>
                 </div>
-                <span className="text-blue-600 font-semibold">
+                <span className="text-blue-600 font-semibold dark:text-white">
                   ${service.price}
                 </span>
               </div>
@@ -86,7 +86,7 @@ export default function Services({ search }) {
               <div className="mt-3">
                 <Link
                   to={`/services/${service._id}`}
-                  className="text-white bg-blue-500 hover:bg-blue-600 px-3 py-1 rounded text-sm"
+                  className="text-white dark:text-gray-300 bg-blue-500 hover:bg-blue-600 dark:bg-gray-600 dark:hover:bg-gray-600 px-3 py-[6px] rounded text-sm "
                 >
                   View Detail
                 </Link>

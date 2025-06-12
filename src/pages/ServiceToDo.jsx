@@ -16,7 +16,7 @@ export default function ServiceToDo() {
   useEffect(() => {
     if (user?.email) {
       axiosInstance
-        .get(`http://localhost:3000/api/bookings/my-order`)
+        .get(`/bookings/my-order`)
         .then((res) => {
           setMyBookings(res.data);
           console.log(res.data);

@@ -21,7 +21,7 @@ export default function AllServices() {
             value={query}
             onChange={(e) => setQuery(e.target.value) }
             placeholder="Search service..."
-            className="w-full py-3 dark:bg-gray-900 pl-12 pr-4 rounded-full shadow-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500"
+            className="w-full py-3 dark:bg-gray-900 dark:text-gray-200 pl-12 pr-4 rounded-full shadow-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500"
           />
           <HiMagnifyingGlass className="absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-400 text-xl" />
         </div>

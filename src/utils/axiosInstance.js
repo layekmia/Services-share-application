@@ -2,7 +2,7 @@ import axios from 'axios';
 import { getAuth } from 'firebase/auth';
 
 const axiosInstance = axios.create({
-    baseURL: "http://localhost:3000/api/services",
+    baseURL: "https://a11server-iota.vercel.app/api",
 })
 
 axiosInstance.interceptors.request.use(async (config) => {

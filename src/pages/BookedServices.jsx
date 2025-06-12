@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-import axios from "axios";
 import { FaSpinner } from "react-icons/fa";
 import { useService } from "../context/ServiceContext";
 import axiosInstance from "../utils/axiosInstance";
@@ -16,7 +15,7 @@ export default function BookedServices() {
   useEffect(() => {
     async function fetchBookedServices() {
       try {
-        const res = await axiosInstance.get(`http://localhost:3000/api/bookings/my-bookings`);
+        const res = await axiosInstance.get(`/bookings/my-bookings`);
         setBookedServices(res.data);
       } catch (error) {
         console.error("Error fetching booked services:", error.message);

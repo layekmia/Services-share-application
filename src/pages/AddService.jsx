@@ -29,7 +29,7 @@ export default function AddService() {
     };
 
     try {
-      const result = await axiosInstance.post("/add", newService);
+      const result = await axiosInstance.post("/services/add", newService);
       console.log(result)
       toast.success("service added successfully");
       setForm({

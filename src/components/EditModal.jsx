@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
-import axios from "axios";
 import { toast } from "react-toastify";
-import BASE_URL from "../utils/helper";
+import axiosInstance from "../utils/axiosInstance";
 
 export default function EditModal({ service, onClose, onUpdate }) {
   const [formData, setFormData] = useState({
@@ -42,8 +41,8 @@ export default function EditModal({ service, onClose, onUpdate }) {
     }
 
     try {
-      const result = await axios.put(
-        `${BASE_URL}/update/${service._id}`,
+      const result = await axiosInstance.put(
+        `/services/update/${service._id}`,
         formData
       );
       toast.success("Service updated successfully");

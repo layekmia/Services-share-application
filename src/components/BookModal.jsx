@@ -1,12 +1,10 @@
 import { useState } from "react";
-import axios from "axios";
 import {toast} from 'react-toastify'
+import axiosInstance from "../utils/axiosInstance";
 
-export default function BookNowModal({ service, user, onClose }) {
+export default function BookNowModal({ service, user, onClose, onOperationComplete }) {
   const [date, setDate] = useState("");
   const [specialInstruction, setSpecialInstruction] = useState("");
-
-  console.log(service.price)
 
   const handleBooking = async () => {
     const bookingData = {
@@ -26,9 +24,10 @@ export default function BookNowModal({ service, user, onClose }) {
 
     
     try {
-      await axios.post("http://localhost:3000/api/booking", bookingData);
+      await axiosInstance.post(`/bookings`, bookingData);
       toast.success("Booking submitted!");
       onClose();
+      onOperationComplete();
     } catch (err) {
       console.log(err)
       toast.error("Booking failed:", err.message);
@@ -37,47 +36,47 @@ export default function BookNowModal({ service, user, onClose }) {
 
   return (
     <div className="fixed inset-0 z-50 bg-black bg-opacity-60 flex items-center justify-center overflow-y-auto px-4 ">
-      <div className="bg-white p-6 rounded-lg max-w-3xl w-full shadow-lg relative">
-        <h2 className="text-xl font-semibold mb-4">Confirm Your Booking</h2>
+      <div className="bg-white p-6 rounded-lg max-w-3xl w-full shadow-lg relative dark:bg-gray-800">
+        <h2 className="text-xl font-semibold mb-4 dark:text-white">Confirm Your Booking</h2>
         <div className="grid grid-cols-2 gap-4 text-sm">
           <div>
-            <label>Service ID</label>
+            <label className="label">Service ID</label>
             <input type="text" className="input" value={service._id} disabled />
           </div>
           <div>
-            <label>Service Name</label>
+            <label className="label">Service Name</label>
             <input type="text" className="input" value={service.title} disabled />
           </div>
           <div>
-            <label>Service Image</label>
+            <label className="label">Service Image</label>
             <input type="text" className="input" value={service.image} disabled />
           </div>
           <div>
-            <label>Provider Email</label>
+            <label className="label">Provider Email</label>
             <input type="text" className="input" value={service.providerEmail} disabled />
           </div>
           <div>
-            <label>Provider Name</label>
+            <label className="label">Provider Name</label>
             <input type="text" className="input" value={service.providerName} disabled />
           </div>
           <div>
-            <label>Your Email</label>
+            <label className="label">Your Email</label>
             <input type="text" className="input" value={user.email} disabled />
           </div>
           <div>
-            <label>Your Name</label>
+            <label className="label">Your Name</label>
             <input type="text" className="input" value={user.name} disabled />
           </div>
           <div>
-            <label>Service Price</label>
+            <label className="label">Service Price</label>
             <input type="text" className="input" value={`$${service.price}`} disabled />
           </div>
           <div>
-            <label>Service Location</label>
+            <label className="label">Service Location</label>
             <input type="text" className="input" value={`${service.area}`} disabled />
           </div>
           <div>
-            <label>Taking Date</label>
+            <label className="label">Taking Date</label>
             <input
               className="input"
               type="date"
@@ -87,7 +86,7 @@ export default function BookNowModal({ service, user, onClose }) {
             />
           </div>
           <div className="col-span-2">
-            <label>Special Instruction</label>
+            <label className="label">Special Instruction</label>
             <textarea
               className="input"
               rows={3}

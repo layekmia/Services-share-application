@@ -40,7 +40,7 @@ export default function Services({ search }) {
   if(isLoading) return <LoadSpinner/>
 
   return (
-    <section className="max-w-6xl mx-auto px-4 py-14">
+    <section className="max-w-6xl mx-auto px-1 py-14">
       <div className="grid grid-cols-1 gap-6">
         {filteredServices?.map((service) => (
           <div

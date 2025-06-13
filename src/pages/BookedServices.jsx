@@ -148,7 +148,7 @@ export default function BookedServices() {
                     {service.serviceStatus}
                   </TableCell>
                   <TableCell className="text-red-500  py-2 px-3 lg:py-3 lg:px-5">
-                    <button onClick={() => setCancelId(service._id)} className={`uppercase ${service.serviceStatus !== 'pending' ? 'opacity-50 cursor-not-allowed' : ''}`}>Cancel</button>
+                    <button disabled={service.serviceStatus !== 'pending'} onClick={() => setCancelId(service._id)} className={`uppercase ${service.serviceStatus !== 'pending' ? 'opacity-50 cursor-not-allowed' : ''}`}>Cancel</button>
                   </TableCell>
                 </TableRow>
               ))}
@@ -212,7 +212,7 @@ export default function BookedServices() {
                 </p>
 
                 <div className="mt-auto pt-3 ">
-                  <button onClick={() => setCancelId(booking._id)} className={`w-full px-4 py-2 bg-red-600 text-white rounded hover:bg-red-700 transition ${booking.serviceStatus !== 'pending' ? 'opacity-50 cursor-not-allowed' : ''}`}>
+                  <button disabled={booking.serviceStatus !== 'pending'} onClick={() => setCancelId(booking._id)} className={`w-full px-4 py-2 bg-red-600 text-white rounded hover:bg-red-700 transition ${booking.serviceStatus !== 'pending' ? 'opacity-50 cursor-not-allowed' : ''}`}>
                     Cancel Booking
                   </button>
                 </div>

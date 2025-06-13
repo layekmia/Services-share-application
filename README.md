@@ -1,13 +1,33 @@
-# React + Vite
+# ServiceHub - Service Booking Platform
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+ServiceHub is a full-stack web application where users can explore and book a variety of home services such as cleaning, plumbing, electrical, and more. Service providers can list their services, manage bookings, and update service statuses. The platform is responsive, user-friendly, and supports authentication and authorization with Firebase.
 
-Currently, two official plugins are available:
+### 🔗 Live Demo
+**[👉 View Live Project Here](https://lustrous-griffin-086d89.netlify.app/)**
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Features
 
-## Expanding the ESLint configuration
+- 🔐 User & Provider authentication (Firebase)
+- 🧰 List and manage services
+- 📅 Book services with preferred schedule
+- 📦 Manage booking status (Pending, Working, Completed)
+- 🌗 Dark mode support
+- 🔍 Filter services by category
+- 📄 Detailed service view with provider info
+- 🛠 Admin/Provider dashboard
+- ❌ Cancel bookings
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
-# b11a11-client-side-layekmia
+## Tech Stack
+
+### Frontend
+- React.js
+- Tailwind CSS
+- Framer Motion (for animations)
+- Firebase Auth
+- React Router
+
+### Backend
+- Node.js
+- Express.js
+- MongoDB (Mongoose)
+- Firebase Admin SDK (JWT validation)

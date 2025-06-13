@@ -1,17 +1,19 @@
 import { MdLocationOn } from "react-icons/md";
 import { Link } from "react-router-dom";
-import BASE_URL from "../utils/helper";
 import LoadSpinner from "./Spinner";
 
-export default function Services({filteredServices, isLoading }) {
-
-
-  if(isLoading) return <LoadSpinner/>
+export default function Services({
+  filteredServices,
+  isLoading,
+  startIndex,
+  endIndex,
+}) {
+  if (isLoading) return <LoadSpinner />;
 
   return (
-    <section className="max-w-6xl mx-auto px-1 pb-14">
+    <section className="max-w-6xl mx-auto px-1 pb-8">
       <div className="grid grid-cols-1 gap-6">
-        {filteredServices?.map((service) => (
+        {filteredServices?.slice(startIndex, endIndex).map((service) => (
           <div
             key={service._id}
             className="border rounded-lg shadow-sm p-4 flex flex-col sm:flex-row gap-4 bg-white dark:bg-gray-800 dark:border-gray-600"

@@ -6,17 +6,25 @@ import BASE_URL, {
   serviceCategories,
 } from "../utils/helper";
 import axios from "axios";
+import Pagination from "../components/Pagination";
+
+const TIMES_PER_PAGE = 6;
 
 export default function AllServices() {
   const [query, setQuery] = useState("");
   const [showFilter, setShowFilter] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
+  const [currentPage, setCurrentPage] = useState(1);
 
   const [selectedCategories, setSelectedCategories] = useState([]);
   const [selectedLocation, setSelectedLocation] = useState([]);
 
   const [services, setServices] = useState([]);
   const [filterServices, setFilterServices] = useState(services);
+
+  const totalPages = Math.ceil(filterServices.length / TIMES_PER_PAGE);
+  const startIndex = (currentPage - 1) * TIMES_PER_PAGE;
+  const endIndex = currentPage * TIMES_PER_PAGE;
 
   // fetch all services
   useEffect(() => {
@@ -162,9 +170,12 @@ export default function AllServices() {
             isLoading={isLoading}
             services={services}
             filteredServices={filterServices}
+            startIndex={startIndex}
+            endIndex={endIndex}
           />
         </div>
       </div>
+      {totalPages > 1 && <Pagination totalPages={totalPages} currentPage={currentPage} setCurrentPage={setCurrentPage}/>}
     </div>
   );
 }

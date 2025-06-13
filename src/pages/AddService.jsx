@@ -3,6 +3,7 @@ import { useService } from "../context/ServiceContext";
 import axiosInstance from "../utils/axiosInstance";
 import { toast } from "react-toastify";
 import { serviceCategories } from "../utils/helper";
+import { Spinner } from "flowbite-react";
 
 export default function AddService() {
   const { user } = useService();
@@ -14,6 +15,8 @@ export default function AddService() {
     description: "",
     category: "",
   });
+
+  const [isLoading, setIsLoading] = useState();
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -31,8 +34,8 @@ export default function AddService() {
     };
 
     try {
-      const result = await axiosInstance.post("/services/add", newService);
-      console.log(result);
+      setIsLoading(true)
+      await axiosInstance.post("/services/add", newService);
       toast.success("service added successfully");
       setForm({
         image: "",
@@ -44,6 +47,8 @@ export default function AddService() {
     } catch (error) {
       console.log(error);
       toast.error(error.message);
+    }finally{
+      setIsLoading(false)
     }
   };
 
@@ -117,7 +122,8 @@ export default function AddService() {
             <label className="block font-medium text-gray-700 mb-1 dark:text-white">
               Category
             </label>
-            <select name="category"
+            <select
+              name="category"
               value={FormData.category}
               onChange={handleChange}
               className=" dark:bg-gray-900 text-gray-600 dark:text-white dark:border-gray-500 w-full border rounded px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-400"
@@ -162,10 +168,24 @@ export default function AddService() {
 
           <div className="text-center">
             <button
-              type="submit"
-              className="bg-blue-600 hover:bg-blue-700 text-white font-semibold px-6 py-2 rounded-lg"
+              disabled={isLoading}
+              className={`py-[6px] bg-primary dark:bg-gray-700 w-full rounded-md mt-5 bg-blue-600 text-white  font-medium text-base ${
+                isLoading ? "opacity-50" : ""
+              }`}
             >
-              Add Service
+              {isLoading ? (
+                <>
+                  <Spinner
+                    size="sm"
+                    aria-label="Info spinner example"
+                    className="me-3"
+                    light
+                  />
+                  adding...
+                </>
+              ) : (
+                "Add Service"
+              )}
             </button>
           </div>
         </form>

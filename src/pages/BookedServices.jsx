@@ -9,17 +9,22 @@ import {
   TableHeadCell,
   TableRow,
 } from "flowbite-react";
-import { formatDate } from "../utils/helper";
+import BASE_URL, { formatDate } from "../utils/helper";
 import LoadSpinner from "../components/Spinner";
 import EmptyPage from "../components/emptyPages/EmptyPage";
 import { BookCheck } from "lucide-react";
 import LayoutBtn from "../components/LayoutBtn";
+import { toast } from "react-toastify";
+import DeleteConfirmationModal from "../components/DeleteConfirmation";
 
 export default function BookedServices() {
   const { user } = useService();
   const [bookedServices, setBookedServices] = useState([]);
   const [loading, setLoading] = useState(true);
   const [view, setView] = useState("table");
+  const [isCanceling, setIsCanceling] = useState(false);
+
+  const [cancelId, setCancelId] = useState(null);
 
   useEffect(() => {
     document.title = "Booked services | ServiceSphere";
@@ -41,6 +46,22 @@ export default function BookedServices() {
       fetchBookedServices();
     }
   }, [user?.email]);
+
+  const handleBookingCancel = async () => {
+    try {
+      setIsCanceling(true)
+      await axiosInstance.delete(`${BASE_URL}/bookings/cancel/${cancelId}`);
+      setBookedServices((prev) =>
+        prev.filter((booking) => booking._id !== cancelId)
+      );
+      toast.success("successfully cancel booking");
+      setCancelId(null);
+    } catch (error) {
+      toast.error("Failed to delete service", error.message);
+    }finally{
+      setIsCanceling(false)
+    }
+  };
 
   if (loading) return <LoadSpinner />;
 
@@ -127,7 +148,7 @@ export default function BookedServices() {
                     {service.serviceStatus}
                   </TableCell>
                   <TableCell className="text-red-500  py-2 px-3 lg:py-3 lg:px-5">
-                   <button className="uppercase">Cancel</button>
+                    <button onClick={() => setCancelId(service._id)} className="uppercase">Cancel</button>
                   </TableCell>
                 </TableRow>
               ))}
@@ -139,14 +160,14 @@ export default function BookedServices() {
           {bookedServices.map((booking, index) => (
             <div
               key={index}
-              className=" bg-white dark:bg-gray-800 rounded-xl shadow-md overflow-hidden border dark:border-gray-700 h-[480px] flex flex-col"
+              className=" bg-white dark:bg-gray-800 rounded-xl shadow-md overflow-hidden border dark:border-gray-700 h-full flex flex-col"
             >
               <img
                 className="w-full h-44 object-cover"
                 src={booking.serviceImage}
                 alt="Service"
               />
-              <div className="p-4 flex flex-col flex-1 space-y-1">
+              <div className="p-4 flex flex-col flex-1 space-y-1 justify-between">
                 <h2 className="text-xl font-semibold text-gray-900 dark:text-white">
                   {booking.serviceName}
                 </h2>
@@ -190,8 +211,8 @@ export default function BookedServices() {
                   </span>
                 </p>
 
-                <div className="mt-auto pt-3">
-                  <button className="w-full px-4 py-2 bg-red-600 text-white rounded hover:bg-red-700 transition">
+                <div className="mt-auto pt-3 ">
+                  <button onClick={() => setCancelId(booking._id)} className="w-full px-4 py-2 bg-red-600 text-white rounded hover:bg-red-700 transition">
                     Cancel Booking
                   </button>
                 </div>
@@ -199,6 +220,18 @@ export default function BookedServices() {
             </div>
           ))}
         </div>
+      )}
+      {cancelId && (
+        <DeleteConfirmationModal
+          onConfirm={handleBookingCancel}
+          onCancel={() => setCancelId(null)}
+          btnText="Confirm"
+          heading="Confirm Cancellation"
+          description="Are you sure you want to cancel this booking? This action cannot be
+          undone."
+          isLoading={isCanceling}
+          loadingText='Cancelling'
+        />
       )}
     </div>
   );

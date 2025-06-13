@@ -25,11 +25,13 @@ export default function ManageServicesPage() {
   const [showModal, setShowModal] = useState(false);
   const [deleteId, setDeleteId] = useState(null);
   const [view, setView] = useState("table");
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(false);
+  const [isDeleting, setDeleting] = useState(false);
 
   useEffect(() => {
     async function fetchServices() {
       try {
+        setLoading(true)
         const res = await axiosInstance.get(`/services/my-services`);
         setServices(res.data);
       } catch (err) {
@@ -43,12 +45,15 @@ export default function ManageServicesPage() {
 
   const handleDelete = async () => {
     try {
+      setDeleting(true)
       await axiosInstance.delete(`/services/${deleteId}`);
       setServices((prev) => prev.filter((service) => service._id !== deleteId));
       toast.success("Service deleted successfully");
       setDeleteId(null);
     } catch (error) {
       toast.error("Failed to delete service", error.message);
+    }finally{
+      setDeleting(false)
     }
   };
 
@@ -58,7 +63,6 @@ export default function ManageServicesPage() {
   };
 
   const handleUpdate = (updatedService) => {
-    console.log(updatedService);
     setServices((prev) =>
       prev.map((s) => (s._id === updatedService._id ? updatedService : s))
     );
@@ -213,6 +217,7 @@ export default function ManageServicesPage() {
           service={editingService}
           onClose={() => setShowModal(false)}
           onUpdate={handleUpdate}
+
         />
       )}
 
@@ -220,6 +225,12 @@ export default function ManageServicesPage() {
         <DeleteConfirmationModal
           onConfirm={handleDelete}
           onCancel={() => setDeleteId(null)}
+          btnText="Delete"
+          heading="Confirm Deletion"
+          description="Are you sure you want to delete this service? This action cannot be
+          undone."
+          isLoading={isDeleting}
+          loadingText='Deleting'
         />
       )}
     </div>

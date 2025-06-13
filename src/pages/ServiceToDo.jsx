@@ -71,9 +71,9 @@ export default function ServiceToDo() {
     );
 
   return (
-    <div className="overflow-x-auto container mx-auto my-10">
+    <div className="overflow-x-auto container mx-auto my-10 px-3">
       <h2 className="text-xl md:text-3xl text-gray-900 dark:text-white text-center mb-5 font-semibold">Services You Need to Complete</h2>
-      <Table>
+      <Table className="">
         <TableHead>
           <TableRow>
             <TableHeadCell className="py-2 px-3 lg:py-3 lg:px-5">#No</TableHeadCell>

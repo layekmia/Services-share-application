@@ -83,7 +83,7 @@ export default function BookedServices() {
       </h2>
       <LayoutBtn view={view} setView={setView} />
       {view === "table" ? (
-        <div className="overflow-x-auto mx-auto mt-5 mb-10 ">
+        <div className="overflow-x-auto shadow-sm mx-auto mt-5 mb-10 ">
           <Table className="">
             <TableHead>
               <TableRow>
@@ -124,7 +124,7 @@ export default function BookedServices() {
                   </TableCell>
                   <TableCell className="py-2 px-3 lg:py-3 lg:px-5">
                     <img
-                      className="h-16 w-32 object-cover rounded-sm"
+                      className="h-26 w-16 object-cover rounded-sm"
                       src={service.serviceImage}
                       alt="service"
                     />
@@ -148,7 +148,7 @@ export default function BookedServices() {
                     {service.serviceStatus}
                   </TableCell>
                   <TableCell className="text-red-500  py-2 px-3 lg:py-3 lg:px-5">
-                    <button onClick={() => setCancelId(service._id)} className="uppercase">Cancel</button>
+                    <button onClick={() => setCancelId(service._id)} className={`uppercase ${service.serviceStatus !== 'pending' ? 'opacity-50 cursor-not-allowed' : ''}`}>Cancel</button>
                   </TableCell>
                 </TableRow>
               ))}
@@ -212,7 +212,7 @@ export default function BookedServices() {
                 </p>
 
                 <div className="mt-auto pt-3 ">
-                  <button onClick={() => setCancelId(booking._id)} className="w-full px-4 py-2 bg-red-600 text-white rounded hover:bg-red-700 transition">
+                  <button onClick={() => setCancelId(booking._id)} className={`w-full px-4 py-2 bg-red-600 text-white rounded hover:bg-red-700 transition ${booking.serviceStatus !== 'pending' ? 'opacity-50 cursor-not-allowed' : ''}`}>
                     Cancel Booking
                   </button>
                 </div>

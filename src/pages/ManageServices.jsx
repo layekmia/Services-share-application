@@ -93,7 +93,7 @@ export default function ManageServicesPage() {
       </h1>
       <LayoutBtn view={view} setView={setView} />
       {view === "table" ? (
-        <div className="overflow-x-scroll lg:overflow-x-auto">
+        <div className="overflow-x-scroll lg:overflow-x-auto shadow-sm">
           <Table>
             <TableHead>
               <TableRow>

@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useService } from "../context/ServiceContext";
 import axiosInstance from "../utils/axiosInstance";
 import { toast } from "react-toastify";
+import { serviceCategories } from "../utils/helper";
 
 export default function AddService() {
   const { user } = useService();
@@ -11,6 +12,7 @@ export default function AddService() {
     price: "",
     area: "",
     description: "",
+    category: "",
   });
 
   const handleChange = (e) => {
@@ -30,7 +32,7 @@ export default function AddService() {
 
     try {
       const result = await axiosInstance.post("/services/add", newService);
-      console.log(result)
+      console.log(result);
       toast.success("service added successfully");
       setForm({
         image: "",
@@ -111,7 +113,23 @@ export default function AddService() {
               className=" dark:bg-gray-900 text-gray-600 dark:text-white dark:border-gray-500 w-full border rounded px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-400"
             />
           </div>
-
+          <div>
+            <label className="block font-medium text-gray-700 mb-1 dark:text-white">
+              Category
+            </label>
+            <select name="category"
+              value={FormData.category}
+              onChange={handleChange}
+              className=" dark:bg-gray-900 text-gray-600 dark:text-white dark:border-gray-500 w-full border rounded px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-400"
+            >
+              <option value="">Select category</option>
+              {serviceCategories.map((category, index) => (
+                <option value={category} key={index}>
+                  {category}
+                </option>
+              ))}
+            </select>
+          </div>
           <div>
             <label className="block font-medium text-gray-700 mb-1 dark:text-white">
               Service Area

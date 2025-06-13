@@ -39,17 +39,6 @@ export default function AllServices() {
     setFilterServices(services);
   }, [services]);
 
-  // Filter services based on user search
-  // useEffect(() => {
-  //   if (!query) {
-  //     setFilteredServices(services);
-  //   } else {
-  //     const filtered = services.filter((service) =>
-  //       service.title.toLowerCase().includes(query.toLowerCase())
-  //     );
-  //     setFilteredServices(filtered);
-  //   }
-  // }, [query, services]);
 
   // handleChange category
   const handleCategoryChange = (category) => {
@@ -94,7 +83,7 @@ export default function AllServices() {
   }, []);
 
   return (
-    <div className="container mx-auto px-5">
+    <div className="container mx-auto px-5 py-10">
       <div className="w-full flex items-center flex-col justify-center h-[50vh]">
         <h1 className="text-3xl md:text-4xl lg:text-5xl font-semibold text-center text-stone-700 dark:text-white">
           Find & Book Service <br /> Provider Easily
@@ -114,16 +103,16 @@ export default function AllServices() {
         <div>
           <button
             onClick={() => setShowFilter((show) => !show)}
-            className="py-[6px] px-6 border w-fit rounded border-gray-400 cursor-pointer lg:hidden"
+            className="py-[6px] px-6 border w-fit rounded border-gray-400 cursor-pointer lg:hidden dark:text-white"
           >
             {showFilter ? "Close" : "Filters"}
           </button>
-          <h2 className="py-[6px] px-6 border max-lg:hidden w-fit rounded border-gray-400 cursor-pointer">
+          <h2 className="py-[6px] px-6 border max-lg:hidden w-fit rounded border-gray-400 cursor-pointer dark:text-white">
             Filters
           </h2>
           <div className={`${!showFilter && "max-lg:hidden"}`}>
             <div>
-              <h2 className="py-4 text-lg font-semibold">
+              <h2 className="py-4 text-lg font-semibold dark:text-white">
                 Search by Categories
               </h2>
               <ul className="flex flex-col gap-2">
@@ -135,7 +124,7 @@ export default function AllServices() {
                       onChange={() => handleCategoryChange(category)}
                       checked={selectedCategories.includes(category)}
                     />
-                    <span className="text-base font-medium text-gray-600">
+                    <span className="text-base font-medium text-gray-600 dark:text-gray-200">
                       {category}
                     </span>
                   </li>
@@ -143,7 +132,7 @@ export default function AllServices() {
               </ul>
             </div>
             <div className="pt-12">
-              <h2 className="py-4 text-lg font-semibold">
+              <h2 className="py-4 text-lg font-semibold dark:text-white">
                 Search by Categories
               </h2>
               <ul className="flex flex-col gap-2">
@@ -155,7 +144,7 @@ export default function AllServices() {
                       onChange={() => handleLocationChange(location)}
                       checked={selectedLocation.includes(location)}
                     />
-                    <span className="text-base font-medium text-gray-600">
+                    <span className="text-base font-medium text-gray-600 dark:text-gray-200">
                       {location}
                     </span>
                   </li>
@@ -165,8 +154,8 @@ export default function AllServices() {
           </div>
         </div>
         <div>
-          <h2 className="text-3xl py-2 font-ReemKufi">Latest Services</h2>
-          <p className="mb-8 text-sm text-gray-800">
+          <h2 className="text-3xl py-2 font-ReemKufi dark:text-white">Latest Services</h2>
+          <p className="mb-8 text-sm text-gray-800 dark:text-gray-200">
             Get your desired service from top providers
           </p>
           <Services

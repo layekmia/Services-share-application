@@ -71,49 +71,50 @@ export default function ServiceToDo() {
     );
 
   return (
-    <div className="overflow-x-auto container mx-auto my-20">
+    <div className="overflow-x-auto container mx-auto my-10">
+      <h2 className="text-xl md:text-3xl text-gray-900 dark:text-white text-center mb-5 font-semibold">Services You Need to Complete</h2>
       <Table>
         <TableHead>
           <TableRow>
-            <TableHeadCell>#No</TableHeadCell>
-            <TableHeadCell>Service Image</TableHeadCell>
-            <TableHeadCell>Title</TableHeadCell>
-            <TableHeadCell>Booked by</TableHeadCell>
-            <TableHeadCell className="max-md:hidden">Location</TableHeadCell>
-            <TableHeadCell className="max-md:hidden">
+            <TableHeadCell className="py-2 px-3 lg:py-3 lg:px-5">#No</TableHeadCell>
+            <TableHeadCell className="py-2 px-3 lg:py-3 lg:px-5">Service Image</TableHeadCell>
+            <TableHeadCell className="py-2 px-3 lg:py-3 lg:px-5">Title</TableHeadCell>
+            <TableHeadCell className="py-2 px-3 lg:py-3 lg:px-5">Booked by</TableHeadCell>
+            <TableHeadCell className="py-2 px-3 lg:py-3 lg:px-5 max-md:hidden">Location</TableHeadCell>
+            <TableHeadCell className="py-2 px-3 lg:py-3 lg:px-5 max-md:hidden">
               Booking Date
             </TableHeadCell>
-            <TableHeadCell className="max-md:hidden">
+            <TableHeadCell className="py-2 px-3 lg:py-3 lg:px-5 max-md:hidden">
               Delivery Date
             </TableHeadCell>
-            <TableHeadCell>Status</TableHeadCell>
+            <TableHeadCell className="py-2 px-3 lg:py-3 lg:px-5">Status</TableHeadCell>
           </TableRow>
         </TableHead>
         <TableBody className="divide-y">
           {myBookings.map((service, index) => (
             <TableRow className="bg-white dark:border-gray-700 dark:bg-gray-800">
-              <TableCell className="whitespace-nowrap font-medium text-gray-900 dark:text-white">
+              <TableCell className="py-2 px-3 lg:py-3 lg:px-5 whitespace-nowrap font-medium text-gray-900 dark:text-white">
                 {index + 1}
               </TableCell>
-              <TableCell>
+              <TableCell className="py-2 px-3 lg:py-3 lg:px-5">
                 <img
                   className="h-26 w-16 rounded-md"
                   src={service.serviceImage}
                   alt="service"
                 />
               </TableCell>
-              <TableCell>{service.serviceName}</TableCell>
-              <TableCell>{service.userEmail}</TableCell>
-              <TableCell className="max-md:hidden">
+              <TableCell className="py-2 px-3 lg:py-3 lg:px-5">{service.serviceName}</TableCell>
+              <TableCell className="py-2 px-3 lg:py-3 lg:px-5">{service.userEmail}</TableCell>
+              <TableCell className="py-2 px-3 lg:py-3 lg:px-5 max-md:hidden">
                 {service.serviceLocation || "Local"}
               </TableCell>
-              <TableCell className="max-md:hidden">
+              <TableCell className="py-2 px-3 lg:py-3 lg:px-5 max-md:hidden">
                 {formatDate(service.createdAt)}
               </TableCell>
-              <TableCell className="max-md:hidden">
+              <TableCell className="py-2 px-3 lg:py-3 lg:px-5 max-md:hidden">
                 {formatDate(service.date)}
               </TableCell>
-              <TableCell>
+              <TableCell className="py-2 px-3 lg:py-3 lg:px-5">
                 <select
                   className="border rounded px-3 py-1 bg-white dark:bg-gray-700 dark:text-white"
                   value={service.serviceStatus}

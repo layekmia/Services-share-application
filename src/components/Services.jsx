@@ -28,7 +28,7 @@ export default function Services({filteredServices, isLoading }) {
                   {service.title}
                 </h3>
                 <p className="text-sm text-gray-600 mt-1 dark:text-gray-300">
-                  {service.description.slice(0, 100)}...
+                  {service.description.slice(0, 90)}...
                 </p>
                 <p className="text-sm text-stone-700 font-medium flex items-center gap-1 mt-2 dark:text-gray-400">
                   <MdLocationOn className="text-xl text-gray-500 dark:text-gray-300" />

@@ -14,13 +14,15 @@ function formatDate(isoString) {
 }
 
 export const serviceCategories = [
-  "Home Cleaning",
-  "Electrical Services",
+  "Health & Beauty",
+  "Cleaning Service",
+  "Home Service",
+  "Electrical Service",
   "Plumbing Services",
-  "Home Improvement",
   "Painting Services",
   "Moving & Packing",
-  "AC & Cooling Services"
+  "AC & Cooling Services",
+  "Law Consultation",
 ];
 
 export const locationCategories = [

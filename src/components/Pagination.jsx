@@ -26,9 +26,9 @@ export default function Pagination({
         <a href="#job-list" key={index + 1}>
           <button
             onClick={() => goToPage(index + 1)}
-            className={`w-10 h-10 flex items-center justify-center border border-gray-300 rounded ${
+            className={`w-10 h-10 flex items-center justify-center border border-gray-300 rounded  dark:text-white ${
               currentPage === index + 1
-                ? "bg-blue-100 text-blue-500"
+                ? "bg-blue-100 text-blue-500 dark:bg-gray-600"
                 : "text-gray-500"
             }`}
           >

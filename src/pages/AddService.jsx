@@ -43,6 +43,7 @@ export default function AddService() {
         price: "",
         area: "",
         description: "",
+        category: ""
       });
     } catch (error) {
       console.log(error);

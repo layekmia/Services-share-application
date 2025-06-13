@@ -58,8 +58,8 @@ export default function Login() {
         <div className="h-screen max-md:hidden">
           <LoginAnimation />
         </div>
-        <div className="h-[calc(100vh-60px)] pt-16 bg-background ">
-          <div className="bg-white dark:bg-[#1f2937] py-5 px-4 w-[300px] mx-auto   rounded-md text-center font-sans ">
+        <div className="h-[calc(100vh-60px)] pt-16 bg-background">
+          <div className="bg-white dark:bg-[#1f2937] py-5 px-4 w-[300px] mx-auto   rounded-md text-center font-sans  shadow-lg">
             <h2 className="text-xl font-semibold text-secondary mb-4 dark:text-white">
               Login
             </h2>

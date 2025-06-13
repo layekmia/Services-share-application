@@ -13,4 +13,26 @@ function formatDate(isoString) {
   return date.toLocaleString('en-US', options);
 }
 
+export const serviceCategories = [
+  "Home Cleaning",
+  "Electrical Services",
+  "Plumbing Services",
+  "Home Improvement",
+  "Painting Services",
+  "Moving & Packing",
+  "AC & Cooling Services"
+];
+
+export const locationCategories = [
+  "Dhaka",
+  "Chattogram",
+  "Rajshahi",
+  "Khulna",
+  "Barishal",
+  "Sylhet",
+  "Rangpur",
+  "Mymensingh"
+];
+
+
 export {formatDate} 

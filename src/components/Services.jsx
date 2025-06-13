@@ -1,46 +1,15 @@
-import axios from "axios";
-import { useEffect, useState } from "react";
 import { MdLocationOn } from "react-icons/md";
 import { Link } from "react-router-dom";
 import BASE_URL from "../utils/helper";
 import LoadSpinner from "./Spinner";
 
-export default function Services({ search }) {
-  const [services, setServices] = useState([]);
-  const [filteredServices, setFilteredServices] = useState([]);
-  const [isLoading, setIsLoading] = useState(false)
+export default function Services({filteredServices, isLoading }) {
 
-  useEffect(() => {
-    async function getServices() {
-      try {
-        setIsLoading(true)
-        const result = await axios.get(`${BASE_URL}/services`);
-        setServices(result.data);
-      } catch (error) {
-        console.log(error.message);
-      }finally{
-      setIsLoading(false)
-    }
-    }
-
-    getServices();
-  }, []);
-
-  useEffect(() => {
-    if (!search) {
-      setFilteredServices(services);
-    } else {
-      const filtered = services.filter((service) =>
-        service.title.toLowerCase().includes(search.toLowerCase())
-      );
-      setFilteredServices(filtered);
-    }
-  }, [search, services]);
 
   if(isLoading) return <LoadSpinner/>
 
   return (
-    <section className="max-w-6xl mx-auto px-1 py-14">
+    <section className="max-w-6xl mx-auto px-1 pb-14">
       <div className="grid grid-cols-1 gap-6">
         {filteredServices?.map((service) => (
           <div

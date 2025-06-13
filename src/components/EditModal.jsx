@@ -62,7 +62,7 @@ export default function EditModal({ service, onClose, onUpdate }) {
 
         <div className="grid grid-cols-2 gap-4 text-sm">
           <div>
-            <label className="text-white mb-1 inline-block">Service Title</label>
+            <label className="dark:text-white mb-1 inline-block">Service Title</label>
             <input
               name="title"
               type="text"
@@ -72,7 +72,7 @@ export default function EditModal({ service, onClose, onUpdate }) {
             />
           </div>
           <div>
-            <label className="text-white mb-1 inline-block">Service Image</label>
+            <label className="dark:text-white mb-1 inline-block">Service Image</label>
             <input
               name="image"
               type="text"
@@ -82,7 +82,7 @@ export default function EditModal({ service, onClose, onUpdate }) {
             />
           </div>
           <div>
-            <label className="text-white mb-1 inline-block">Provider Email</label>
+            <label className="dark:text-white mb-1 inline-block">Provider Email</label>
             <input
               type="text"
               className="input"
@@ -91,7 +91,7 @@ export default function EditModal({ service, onClose, onUpdate }) {
             />
           </div>
           <div>
-            <label className="text-white mb-1 inline-block">Provider Name</label>
+            <label className="dark:text-white mb-1 inline-block">Provider Name</label>
             <input
               type="text"
               className="input"
@@ -100,7 +100,7 @@ export default function EditModal({ service, onClose, onUpdate }) {
             />
           </div>
           <div>
-            <label className="text-white mb-1 inline-block">Service Area</label>
+            <label className="dark:text-white mb-1 inline-block">Service Area</label>
             <input
               name="area"
               type="text"
@@ -110,7 +110,7 @@ export default function EditModal({ service, onClose, onUpdate }) {
             />
           </div>
           <div>
-            <label className="text-white mb-1 inline-block">Service Price</label>
+            <label className="dark:text-white mb-1 inline-block">Service Price</label>
             <input
               name="price"
               type="number"
@@ -120,7 +120,7 @@ export default function EditModal({ service, onClose, onUpdate }) {
             />
           </div>
           <div className="col-span-2">
-            <label className="text-white mb-1 inline-block">Description</label>
+            <label className="dark:text-white mb-1 inline-block">Description</label>
             <textarea
               name="description"
               className="input"

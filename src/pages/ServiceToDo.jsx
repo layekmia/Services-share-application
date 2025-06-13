@@ -19,7 +19,6 @@ export default function ServiceToDo() {
   const { user } = useService();
   const [myBookings, setMyBookings] = useState([]);
   const [loading, setLoading] = useState(true);
-  console.log(myBookings);
 
   useEffect(() => {
     if (user?.email) {
@@ -27,7 +26,6 @@ export default function ServiceToDo() {
         .get(`/bookings/my-order`)
         .then((res) => {
           setMyBookings(res.data);
-          console.log(res.data);
           setLoading(false);
         })
         .catch((err) => {

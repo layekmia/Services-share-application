@@ -29,7 +29,6 @@ export default function BookNowModal({ service, user, onClose, onOperationComple
       onClose();
       onOperationComplete();
     } catch (err) {
-      console.log(err)
       toast.error("Booking failed:", err.message);
     }
   };

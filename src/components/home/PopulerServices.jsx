@@ -40,10 +40,10 @@ export default function PopularServices() {
             <motion.div
               key={service._id}
               className="border rounded-lg shadow-sm p-4 flex flex-col sm:flex-row gap-4 bg-white dark:bg-gray-800 dark:border-gray-700"
-              initial={{ opacity: 0, x: isLeft ? -100 : 100 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.6, delay: index * 0.1 }}
-              viewport={{ once: true, amount: 0.3 }}
+              initial={{opacity: 0, x:isLeft ? -100: 100 }}
+              whileInView={{opacity: 1, x:0}}
+              transition={{duration:0.6, delay: index * 0.1}}
+              viewport={{once: true, amount:0.3}}
             >
               <img
                 src={service.image}

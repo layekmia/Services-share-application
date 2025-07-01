@@ -4,17 +4,20 @@ import { useInView } from "react-intersection-observer";
 const steps = [
   {
     title: "Browse Services",
-    subtitle: "Explore various categories and find the service that suits you need",
+    subtitle:
+      "Explore various categories and find the service that suits you need",
     image: "/icons/scroll.png",
   },
   {
     title: "Select & Book",
-    subtitle: "Select the provider and schedule the service at your convenience",
+    subtitle:
+      "Select the provider and schedule the service at your convenience",
     image: "/icons/booking.png",
   },
   {
     title: "Get served",
-    subtitle: "Receive top-quality service and enjoy peace of mind. it's that easy!",
+    subtitle:
+      "Receive top-quality service and enjoy peace of mind. it's that easy!",
     image: "/icons/handover.png",
   },
 ];
@@ -38,7 +41,9 @@ const StepItem = ({ step, index }) => {
       <div className="relative pl-4 border-l-2 border-gray-300 dark:border-gray-500">
         <div className="absolute -left-2 top-1.5 w-3 h-3 bg-gray-700 rounded-full group-hover:bg-blue-600" />
         <h3 className="font-bold text-lg dark:text-gray-200">{step.title}</h3>
-        <p className="text-gray-600 text-sm dark:text-gray-400">{step.subtitle}</p>
+        <p className="text-gray-600 text-sm dark:text-gray-400">
+          {step.subtitle}
+        </p>
         {step.image && (
           <img src={step.image} alt={step.title} className="w-14 mt-2" />
         )}

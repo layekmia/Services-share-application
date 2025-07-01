@@ -1,0 +1,6 @@
+1. create a variable how much card or service or jobs will be in on page ? 
+2. make an current page state;
+3. Count total number of page;
+4. a variable for start Index ;
+5. a variable for end index;
+6. 

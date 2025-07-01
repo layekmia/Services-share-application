@@ -8,8 +8,6 @@ const axiosInstance = axios.create({
 axiosInstance.interceptors.request.use(async (config) => {
     const auth = getAuth();
     const user = auth.currentUser;
-
-
     if(user){
         const token = user.accessToken;
         config.headers.Authorization = `Bearer ${token}`

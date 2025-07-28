@@ -2,8 +2,9 @@
 
 ServiSphere is a full-stack web application where users can explore and book a variety of home services such as cleaning, plumbing, electrical, and more. Service providers can list their services, manage bookings, and update service statuses. The platform is responsive, user-friendly, and supports authentication and authorization with Firebase.
 
-### 🔗 Live Demo
-**[👉 View Live Project Here](https://lustrous-griffin-086d89.netlify.app/)**
+## 🌐 Live Preview
+🔗 [Live Site](https://servisphare.netlify.app/)  
+📂 [Backend Repository](https://github.com/layekmia/ServiSphere-Server.git)
 
 ## Features
 

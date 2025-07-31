@@ -1,6 +1,6 @@
 # ServiSphere - Service Booking Platform
 
-ServiSphere is a full-stack web application where users can explore and book a variety of home services such as cleaning, plumbing, electrical, and more. Service providers can list their services, manage bookings, and update service statuses. The platform is responsive, user-friendly, and supports authentication and authorization with Firebase.
+ServiSphere is a full-stack web app for booking home services like cleaning, plumbing, and electrical. It includes service listing, booking management, and secure authentication using Firebase and JWT, all within a responsive modern UI.
 
 ## 🌐 Live Preview
 

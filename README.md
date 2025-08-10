@@ -7,7 +7,6 @@ ServiSphere is a full-stack web app for booking home services like cleaning, plu
 🔗 <a href="https://servisphare.netlify.app/" target="_blank">Live Site</a>  
 📂 <a href="https://github.com/layekmia/ServiSphere-Server.git" target="_blank">Backend Repository</a>
 
-
 ## Features
 
 - 🔐 User & Provider authentication (Firebase)
